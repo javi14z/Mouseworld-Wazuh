@@ -1,15 +1,20 @@
-apiVersion: v1
-kind: List
-items:
-- apiVersion: v1
-  kind: Pod
-  metadata:
-    name: agent1
-    namespace: default
-  spec:
-    containers:
-    - image: javi14t/wazuh-agent-nmap:latest
-      name: pod
-      command: ["sh", "-c", "/var/ossec/bin/wazuh-control start && tail -f /var/ossec/logs/ossec.log"]
-      securityContext:
-        privileged: true
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wazuh-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wazuh-agent
+  template:
+    metadata:
+      labels:
+        app: wazuh-agent
+    spec:
+      containers:
+      - name: wazuh-agent
+        image: javi14t/wazuh-agent-nmap:latest
+        command: ["sh", "-c", "/var/ossec/bin/wazuh-control start && tail -f /var/ossec/logs/ossec.log"]
+        securityContext:
+          privileged: true
