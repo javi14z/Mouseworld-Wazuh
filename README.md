@@ -23,9 +23,18 @@ Se siguen las guías: https://documentation.wazuh.com/current/installation-guide
 https://wazuh.com/blog/nmap-and-chatgpt-security-auditing/
 
 
+Para construir la imagen: 
+~~~
+docker build -t wazuh-agent-nmap:latest .
+~~~
+
 ## wazuh-agent-k8s
 
-Despliegue en k8s de los agentes
+Despliegue en k8s de los agentes:
+
+~~~
+k apply -f agent-deployment.yaml
+~~~
 
 ### deployment-ansible
 
