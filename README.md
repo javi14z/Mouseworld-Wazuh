@@ -11,6 +11,10 @@ Despliega todos los componentes de wazuh en Docker. Versión 4.12: https://docum
 
 La única modificación añadida es el fichero: \wazuh-server-docker\single-node\config\local_rules.xml. Permite hacer la lectura de lo que obtienen los agentes con el escaneo de nmap.
 
+Credenciales:
+
+admin/SecretPassword
+
 ## wazuh-agent-docker
 
 Construye una imagen de docker de Ubuntu 20.04 con la configuración de un agente que se enlaza al servidor con la IP: WAZUH_MANAGER="192.168.159.32"
