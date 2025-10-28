@@ -43,3 +43,7 @@ Despliegue dentro de componentes ya desplegados utilziando ansible. Seguir la gu
 ### deployment-k8s
 
 Despliegue de un pod que realizará el escaneo de nmap. Usará la imagen construida con Docker.
+
+## wazuh-agent-tfs
+
+Instalación de agente de wazuh en VM TFS automaticamente

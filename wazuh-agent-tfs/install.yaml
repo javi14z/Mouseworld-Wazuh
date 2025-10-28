@@ -1,0 +1,18 @@
+---
+- name: Install Wazuh Agent on TFS
+  hosts: localhost
+  gather_facts: no
+  tasks: 
+ #--------------------------------------------Deploy agent---------------------------------------------------------------------------
+
+    - name: Download and install the agent
+      shell: curl -o wazuh-agent-4.12.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.12.0-1.x86_64.rpm && sudo WAZUH_MANAGER='192.168.159.32' rpm -ihv wazuh-agent-4.12.0-1.x86_64.rpm
+    
+    - name: Recargar configuración de systemd
+      shell: sudo systemctl daemon-reload
+
+    - name: Habilitar el servicio wazuh-agent
+      shell: sudo systemctl enable wazuh-agent
+
+    - name: Iniciar el servicio wazuh-agent
+      shell: sudo systemctl start wazuh-agent
