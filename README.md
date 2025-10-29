@@ -33,7 +33,7 @@ docker build -t wazuh-agent-nmap:latest .
 Despliegue en k8s de los agentes:
 
 ~~~
-k apply -f agent-deployment.yaml
+k apply -f agent-nmap-deployment.yaml
 ~~~
 
 ### deployment-ansible
