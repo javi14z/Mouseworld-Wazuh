@@ -11,6 +11,9 @@
     - name: Recargar configuración de systemd
       shell: sudo systemctl daemon-reload
 
+    #Pendiente modificar ossec config para habilitar integración VirtusTotal y su API
+
+    
     - name: Habilitar el servicio wazuh-agent
       shell: sudo systemctl enable wazuh-agent
 
