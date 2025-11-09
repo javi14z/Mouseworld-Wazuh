@@ -5,15 +5,28 @@
   tasks: 
  #--------------------------------------------Deploy agent---------------------------------------------------------------------------
 
-    - name: Download and install the agent
-      shell: wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.12.0-1_amd64.deb && sudo WAZUH_MANAGER='192.168.159.32' dpkg -i ./wazuh-ag>
- 
+    - name: Download Wazuh agent
+      get_url:
+        url: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.12.0-1_amd64.deb
+        dest: /tmp/wazuh-agent_4.12.0-1_amd64.deb
+
+    - name: Install Wazuh agent
+      command: dpkg -i /tmp/wazuh-agent_4.12.0-1_amd64.deb
+      environment:
+        WAZUH_MANAGER: "192.168.159.32"
+      become: yes
+
+    - name: Add FIM directory monitoring to ossec.conf
+      shell: |
+        sed -i -e '/<\/ossec_config>/i \
+          <syscheck>\
+            <directories check_all="yes" realtime="yes">/home/ubuntu</directories>\
+          </syscheck>' /var/ossec/etc/ossec.conf
+      become: true
+
     - name: Recargar configuración de systemd
       shell: sudo systemctl daemon-reload
 
-    #Pendiente modificar ossec config para habilitar integración VirtusTotal y su API
-
-    
     - name: Habilitar el servicio wazuh-agent
       shell: sudo systemctl enable wazuh-agent
 
