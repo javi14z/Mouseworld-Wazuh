@@ -24,11 +24,11 @@
           </syscheck>' /var/ossec/etc/ossec.conf
       become: true
 
-    - name: Recargar configuración de systemd
+    - name: Reload systemd configuration 
       shell: sudo systemctl daemon-reload
 
-    - name: Habilitar el servicio wazuh-agent
+    - name: Enable wazuh-agent service
       shell: sudo systemctl enable wazuh-agent
 
-    - name: Iniciar el servicio wazuh-agent
+    - name: Start wazuh-agent service
       shell: sudo systemctl start wazuh-agent
